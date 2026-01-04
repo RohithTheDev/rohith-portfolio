@@ -17,7 +17,8 @@ export interface EmailResponse {
   providedIn: 'root'
 })
 export class EmailService {
-  private apiUrl = '/api/send-email'; // Backend API endpoint
+  // ✅ MUST match Vercel Express route
+  private apiUrl = '/api/server/send-email';
 
   constructor(private http: HttpClient) {}
 
