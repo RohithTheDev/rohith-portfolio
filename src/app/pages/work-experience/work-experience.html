@@ -1,0 +1,40 @@
+<div class="experience-container page-container">
+  <div class="container">
+    <div class="page-header" @fadeInUp>
+      <h1 class="page-title">Work Experience</h1>
+      <p class="page-subtitle">My professional journey and contributions</p>
+    </div>
+
+    <div class="timeline" @staggerCards>
+      @for (exp of experiences; track exp.company) {
+        <div class="timeline-item" @fadeInUp>
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="experience-header">
+              <div>
+                <h2 class="company-name">{{ exp.company }}</h2>
+                <h3 class="role-title">{{ exp.role }}</h3>
+              </div>
+              <div class="experience-meta">
+                <span class="duration">{{ exp.duration }}</span>
+                <span class="location">{{ exp.location }}</span>
+              </div>
+            </div>
+            
+            <ul class="description-list">
+              @for (desc of exp.description; track desc) {
+                <li>{{ desc }}</li>
+              }
+            </ul>
+            
+            <div class="technologies">
+              @for (tech of exp.technologies; track tech) {
+                <span class="tech-tag">{{ tech }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</div>

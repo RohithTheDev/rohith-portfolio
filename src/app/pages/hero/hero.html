@@ -1,0 +1,44 @@
+<div class="hero-container page-container">
+  <div class="container">
+    <div class="hero-content" @fadeInUp>
+      <div class="hero-text">
+        <h1 class="hero-name" @fadeInUp>
+          <span class="greeting">Hello, I'm</span>
+          <span class="name">{{ name }}</span>
+        </h1>
+        <div class="hero-role" @fadeInUp>
+          <span class="role-label">I'm a </span>
+          <span class="role-text">{{ currentRole.length > 0 ? currentRole : 'Software Engineer' }}<span class="cursor">|</span></span>
+        </div>
+        <p class="hero-description" @fadeInUp>
+          Passionate about creating immersive, animated user experiences 
+          with cutting-edge web technologies.
+        </p>
+        <div class="hero-cta" @staggerItems>
+          <a routerLink="/contact" class="btn btn-primary" @scaleIn>
+            <span>Get In Touch</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a routerLink="/resume" class="btn btn-secondary" @scaleIn>
+            Download Resume
+          </a>
+        </div>
+      </div>
+      
+      <div class="hero-visual" @fadeIn>
+        <div class="floating-icons">
+          @for (icon of techIcons; track $index) {
+            <div class="floating-icon" [style.animation-delay]="$index * 0.2 + 's'">
+              <span class="icon-emoji">{{ icon }}</span>
+            </div>
+          }
+        </div>
+        <div class="gradient-blob blob-1"></div>
+        <div class="gradient-blob blob-2"></div>
+        <div class="gradient-blob blob-3"></div>
+      </div>
+    </div>
+  </div>
+</div>

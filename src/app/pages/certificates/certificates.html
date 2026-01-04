@@ -1,0 +1,49 @@
+<div class="certificates-container page-container">
+  <div class="container">
+    <div class="page-header" @fadeInUp>
+      <h1 class="page-title">Certifications</h1>
+      <p class="page-subtitle">Professional certifications and achievements</p>
+    </div>
+
+    <div class="certificates-grid" @staggerCards>
+      @for (cert of certificates; track cert.title) {
+        <div class="certificate-card" @fadeInUp (click)="selectCertificate(cert)">
+          <div class="certificate-header">
+            <div class="cert-icon">🎓</div>
+            <h3 class="cert-title">{{ cert.title }}</h3>
+          </div>
+          <div class="certificate-body">
+            <p class="cert-issuer">{{ cert.issuer }}</p>
+            <p class="cert-date">{{ cert.date }}</p>
+            @if (cert.credentialId) {
+              <p class="cert-id">ID: {{ cert.credentialId }}</p>
+            }
+          </div>
+          <div class="certificate-footer">
+            <span class="view-link" (click)="selectCertificate(cert)">View Details →</span>
+          </div>
+          <div class="cert-glow"></div>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (selectedCertificate) {
+    <div class="modal-overlay" (click)="closeModal()" @fadeIn>
+      <div class="modal-content" (click)="$event.stopPropagation()" @scaleIn>
+        <button class="modal-close" (click)="closeModal()">×</button>
+        <h2>{{ selectedCertificate.title }}</h2>
+        <p class="modal-issuer">Issued by: {{ selectedCertificate.issuer }}</p>
+        <p class="modal-date">Date: {{ selectedCertificate.date }}</p>
+        @if (selectedCertificate.credentialId) {
+          <p class="modal-id">Credential ID: {{ selectedCertificate.credentialId }}</p>
+        }
+        @if (selectedCertificate.link) {
+          <a [href]="selectedCertificate.link" target="_blank" class="modal-link">
+            Verify Certificate
+          </a>
+        }
+      </div>
+    </div>
+  }
+</div>

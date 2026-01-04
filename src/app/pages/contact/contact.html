@@ -1,0 +1,122 @@
+<div class="contact-container page-container">
+  <div class="container">
+    <div class="page-header" @fadeInUp>
+      <h1 class="page-title">Get In Touch</h1>
+      <p class="page-subtitle">Have a project in mind? Let's work together!</p>
+    </div>
+
+    <div class="contact-content">
+      <div class="contact-info" @fadeInUp>
+        <h2>Let's Connect</h2>
+        <p>I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+
+        <div class="info-items">
+          <div class="info-item">
+            <div class="info-icon">📧</div>
+            <div>
+              <h3>Email</h3>
+              <a href="mailto:rohithpasuveswaran.2112@gmail.com">rohithpasuveswaran.2112@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon">💼</div>
+            <div>
+              <h3>Available For</h3>
+              <p>Full-time positions, Freelance projects, Consultations</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" @fadeInUp>
+        <div class="form-group">
+          <label for="name" [class.active]="name?.value || name?.touched">
+            <span class="label-text">Name</span>
+          </label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            [class.error]="name?.invalid && (name?.touched || submitted)"
+            placeholder="Name"
+          />
+          @if (name?.invalid && (name?.touched || submitted)) {
+            <span class="error-message">
+              @if (name?.errors?.['required']) {
+                Name is required
+              } @else if (name?.errors?.['minlength']) {
+                Name must be at least 2 characters
+              }
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="email" [class.active]="email?.value || email?.touched">
+            <span class="label-text">Email</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            [class.error]="email?.invalid && (email?.touched || submitted)"
+            placeholder="Email"
+          />
+          @if (email?.invalid && (email?.touched || submitted)) {
+            <span class="error-message">
+              @if (email?.errors?.['required']) {
+                Email is required
+              } @else if (email?.errors?.['email']) {
+                Please enter a valid email
+              }
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="message" [class.active]="message?.value || message?.touched">
+            <span class="label-text">Message</span>
+          </label>
+          <textarea
+            id="message"
+            formControlName="message"
+            rows="6"
+            [class.error]="message?.invalid && (message?.touched || submitted)"
+            placeholder="Message"
+          ></textarea>
+          @if (message?.invalid && (message?.touched || submitted)) {
+            <span class="error-message">
+              @if (message?.errors?.['required']) {
+                Message is required
+              } @else if (message?.errors?.['minlength']) {
+                Message must be at least 10 characters
+              }
+            </span>
+          }
+        </div>
+
+        @if (submitSuccess) {
+          <div class="success-message" @fadeIn>
+            ✓ Message sent successfully! I'll get back to you soon.
+          </div>
+        }
+
+        @if (submitError) {
+          <div class="error-message-general" @fadeIn>
+            ✗ Please fill in all fields correctly.
+          </div>
+        }
+
+        <button type="submit" class="btn-submit" [class.loading]="submitted">
+          <span>Send Message</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M2.5 5L10 10.8333L17.5 5M2.5 15H17.5V8.33333H2.5V15Z"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

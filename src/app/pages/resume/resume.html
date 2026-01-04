@@ -1,0 +1,58 @@
+<div class="resume-container page-container">
+  <div class="container">
+    <div class="resume-content" @fadeInUp>
+      <div class="page-header">
+        <h1 class="page-title">Rohith Pasuveswaran</h1>
+        <p class="page-subtitle">Download my resume or view it online</p>
+      </div>
+
+      <div class="resume-card" @scaleIn>
+        <div class="resume-preview">
+          <div class="preview-header">
+            <div class="preview-icon">📄</div>
+            <div>
+              <h2>Rohith Pasuveswaran.pdf</h2>
+              <p>Updated: {{ currentDate }}</p>
+            </div>
+          </div>
+          <div class="preview-content">
+            <div class="preview-section">
+              <h3>Professional Summary</h3>
+              <p>{{professionalSummary}}</p>
+            </div>
+            <div class="preview-section">
+              <h3>Key Highlights</h3>
+              <ul>
+                <li>1+ years of frontend development experience</li>
+                <li>Expert in Angular, TypeScript, and modern CSS</li>
+                <li>Strong focus on Fullstack development</li>
+                <li>Experience with performance optimization</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="resume-actions">
+          <button class="btn-download" (click)="downloadResume()" @fadeIn>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M10 13.3333L5 8.33333H7.5V3.33333H12.5V8.33333H15L10 13.3333Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+              <path d="M3.33333 16.6667H16.6667" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round"/>
+            </svg>
+            <span>Download Resume</span>
+          </button>
+          <a routerLink="/contact" class="btn-contact" @fadeIn>
+            <span>Request Updated Resume</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M2.5 5L10 10.8333L17.5 5M2.5 15H17.5V8.33333H2.5V15Z"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

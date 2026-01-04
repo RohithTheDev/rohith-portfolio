@@ -1,0 +1,49 @@
+<div class="profiles-container page-container">
+  <div class="container">
+    <div class="page-header" @fadeInUp>
+      <h1 class="page-title">Coding Profiles & Social Links</h1>
+      <p class="page-subtitle">Connect with me on various platforms</p>
+    </div>
+
+    <div class="profiles-grid" @staggerCards>
+      @for (profile of profiles; track profile.name) {
+        <a
+          [href]="profile.url"
+          (click)="openProfile(profile.url, $event)"
+          class="profile-card"
+          [style.--profile-color]="profile.color"
+          @fadeInUp>
+          <div class="card-glow"></div>
+          <div class="card-content">
+            <div class="profile-icon">{{ profile.icon }}</div>
+            <h3 class="profile-name">{{ profile.name }}</h3>
+            <p class="profile-description">{{ profile.description }}</p>
+            <div class="profile-arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" 
+                      stroke="currentColor" stroke-width="2" 
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+        </a>
+      }
+    </div>
+
+    <div class="social-section" @fadeInUp>
+      <h2 class="section-title">Follow Me</h2>
+      <div class="social-links">
+        @for (profile of profiles.slice(0, 4); track profile.name) {
+          <a
+            [href]="profile.url"
+            (click)="openProfile(profile.url, $event)"
+            class="social-link"
+            [attr.aria-label]="profile.name">
+            <span class="social-icon">{{ profile.icon }}</span>
+            <span class="social-name">{{ profile.name }}</span>
+          </a>
+        }
+      </div>
+    </div>
+  </div>
+</div>

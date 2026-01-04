@@ -1,0 +1,7 @@
+<app-particles-background></app-particles-background>
+<app-navigation></app-navigation>
+<main class="main-content">
+  <div [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet" />
+  </div>
+</main>

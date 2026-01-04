@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 80px;
+  min-height: 100vh;
+}
+

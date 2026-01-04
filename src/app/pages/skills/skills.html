@@ -1,0 +1,42 @@
+<div class="skills-container page-container">
+  <div class="container">
+    <div class="page-header" @fadeInUp>
+      <h1 class="page-title">Skills & Expertise</h1>
+      <p class="page-subtitle">Technologies and tools I work with</p>
+    </div>
+
+    <div class="skills-grid" @staggerSkills>
+      @for (category of skillCategories; track category.category) {
+        <div class="skill-category" @fadeInUp>
+          <h2 class="category-title">{{ category.category }}</h2>
+          <div class="skills-list">
+            @for (skill of category.skills; track skill.name) {
+              <div class="skill-item">
+                <div class="skill-header">
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-level">{{ skill.level }}%</span>
+                </div>
+                <div class="progress-bar-container">
+                  <div 
+                    class="progress-bar" 
+                    [style.width.%]="skill.level"
+                    [style.animation-delay.ms]="$index * 100">
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="skill-chips" @fadeInUp>
+      <h2 class="section-title">Additional Skills</h2>
+      <div class="chips-container">
+        @for (chip of additionalSkills; track chip) {
+          <span class="skill-chip">{{ chip }}</span>
+        }
+      </div>
+    </div>
+  </div>
+</div>
