@@ -1,8 +1,5 @@
-import express, { Request, Response } from 'express';
+import type { VercelRequest, VercelResponse } from '@vercel/node';
 import nodemailer from 'nodemailer';
-
-const app = express();
-app.use(express.json());
 
 interface EmailRequest {
   name: string;
@@ -10,13 +7,16 @@ interface EmailRequest {
   message: string;
 }
 
-app.post('/send-email', async (req: Request, res: Response) => {
+export default async function handler(
+  req: VercelRequest,
+  res: VercelResponse
+) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ success: false, message: 'Method Not Allowed' });
+    return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
   try {
-    const { name, email, message }: EmailRequest = req.body;
+    const { name, email, message } = req.body as EmailRequest;
 
     if (!name || !email || !message) {
       return res.status(400).json({
@@ -28,8 +28,8 @@ app.post('/send-email', async (req: Request, res: Response) => {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER!,
-        pass: process.env.EMAIL_PASSWORD!
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
       }
     });
 
@@ -38,9 +38,9 @@ app.post('/send-email', async (req: Request, res: Response) => {
       to: process.env.EMAIL_USER,
       subject: `New Contact Message from ${name}`,
       html: `
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
+        <p><b>Name:</b> ${name}</p>
+        <p><b>Email:</b> ${email}</p>
+        <p>${message.replace(/\n/g, '<br />')}</p>
       `
     });
 
@@ -51,15 +51,12 @@ app.post('/send-email', async (req: Request, res: Response) => {
       html: `<p>Hi ${name}, thanks for reaching out!</p>`
     });
 
-    return res.json({ success: true });
+    return res.status(200).json({ success: true });
   } catch (error) {
-    console.error('Email error:', error);
-    return res.status(500).json({ success: false });
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: 'Failed to send email'
+    });
   }
-});
-
-app.get('/health', (_req: Request, res: Response) => {
-  res.json({ status: 'ok' });
-});
-
-export default app;
+}
