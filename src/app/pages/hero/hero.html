@@ -7,11 +7,11 @@
           <span class="name">{{ name }}</span>
         </h1>
         <div class="hero-role" @fadeInUp>
-          <span class="role-label">I'm a </span>
+          <span class="role-label">a</span>
           <span class="role-text">{{ currentRole.length > 0 ? currentRole : 'Software Engineer' }}<span class="cursor">|</span></span>
         </div>
         <p class="hero-description" @fadeInUp>
-          Passionate about creating immersive, animated user experiences 
+          Passionate about creating immersive, animated user experiences
           with cutting-edge web technologies.
         </p>
         <div class="hero-cta" @staggerItems>
@@ -26,7 +26,7 @@
           </a>
         </div>
       </div>
-      
+
       <div class="hero-visual" @fadeIn>
         <div class="floating-icons">
           @for (icon of techIcons; track $index) {
